@@ -41,12 +41,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/admin/customers/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
     Route::post('/admin/customers/{customer}/pay', [CustomerController::class, 'pay'])->name('customers.pay');
 
+
     Route::get('/admin/customers/{customer}', [CustomerController::class, 'show'])->name('customers.show');
     Route::post('/admin/customers/{customer}/bags', [BagController::class, 'store'])->name('bags.store');
     Route::post('/admin/customers/{customer}/pay', [CustomerController::class, 'pay'])->name('customers.pay');
 
     Route::post('/customers/{customer}/payments', [BagController::class, 'pay'])->name('bags.pay');
     Route::get('/bags/pdf/{customer}', [BagController::class, 'pdf'])->name('bags.pdf');
+
 });
 
 

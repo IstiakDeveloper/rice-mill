@@ -12,4 +12,8 @@ class Payment extends Model
     {
         return $this->belongsTo(Customer::class);
     }
+    public function season()
+    {
+        return $this->belongsTo(Season::class);
+    }
 }

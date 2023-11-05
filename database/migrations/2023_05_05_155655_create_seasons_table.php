@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('seasons', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('area');
-            $table->string('phone_number')->nullable();
-            $table->string('image')->nullable();
-            $table->unsignedBigInteger('season_id')->nullable();
-            $table->foreign('season_id')->references('id')->on('seasons');
             $table->timestamps();
         });
     }
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('seasons');
     }
 };

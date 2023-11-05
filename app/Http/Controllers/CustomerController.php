@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bag;
 use App\Models\Customer;
 use App\Models\Payment;
+use App\Models\Season;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -13,39 +16,59 @@ class CustomerController extends Controller
      */
     public function index(Request $request)
     {
-       $query = Customer::query();
+        $query = Customer::query();
 
         // Filter by address (area)
         if ($request->has('area')) {
             $area = $request->input('area');
             $query->where('area', 'LIKE', "%$area%");
         }
-    
+
         // Filter by name
         if ($request->has('name')) {
             $name = $request->input('name');
             $query->where('name', 'LIKE', "%$name%");
         }
-    
-        $customers = $query->paginate(10); // Assuming you want 10 customers per page
-    
-        $totalAmount = Customer::sum('total');
+
+        $customers = $query;
+
+        $totalAmount = Bag::sum('total');
         $totalPayment = Payment::sum('amount');
-        
-         $totalPerAmount = 0;
 
-        foreach (Customer::all() as $customer) {
-            $totalPerAmount += $customer->total;
+        $selectedSeason = $request->input('season');
+        $seasons = Season::all();
+
+        if ($selectedSeason) {
+            $totalAmount = Bag::whereHas('season', function ($query) use ($selectedSeason) {
+                $query->where('name', $selectedSeason);
+            })->sum('total');
+
+            $totalPayment = Payment::whereHas('season', function ($query) use ($selectedSeason) {
+                $query->where('name', $selectedSeason);
+            })->sum('amount');
+        } else {
+            $totalAmount = Bag::sum('total');
+            $totalPayment = Payment::sum('amount');
         }
 
-        $totalPerPayment = 0;
-
-        foreach (Payment::all() as $customer) {
-            $totalPerPayment += $customer->amount;
+        if ($selectedSeason) {
+            $customers = $query->whereHas('bags', function ($query) use ($selectedSeason) {
+                $query->whereHas('season', function ($q) use ($selectedSeason) {
+                    $q->where('name', $selectedSeason);
+                });
+            });
+        } else {
+            $customers = $query;
         }
-    
-        return view('admin.customers.index', compact('customers', 'totalAmount', 'totalPayment'));
+
+
+        $customers = $customers->paginate(10);
+
+        return view('admin.customers.index', compact('customers', 'totalAmount', 'totalPayment', 'seasons', 'selectedSeason'));
     }
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -64,8 +87,8 @@ class CustomerController extends Controller
             'name' => 'required',
             'area' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'phone_number' => 'nullable',
         ]);
-
 
         // Upload and save the image
         if ($request->hasFile('image')) {
@@ -75,8 +98,28 @@ class CustomerController extends Controller
 
         $customer = Customer::create($validatedData);
 
+        // Create and associate the season
+        $season = Season::firstOrCreate(['name' => $this->getCurrentSeason()]);
+        $customer->season()->associate($season);
+        $customer->save();
+
         return redirect()->route('customers.index')->with('success', 'Customer created successfully.');
     }
+
+    private function getCurrentSeason()
+    {
+        $now = Carbon::now();
+        $currentYear = $now->year;
+
+        if ($now->month >= 3 && $now->month <= 8) {
+            // March to August is "Aaman" season
+            return "Aman" . $currentYear;
+        } else {
+            // September to February is "Eiri" season
+            return "Eiri" . ($now->month >= 9 ? $currentYear : $currentYear - 1);
+        }
+    }
+
 
     /**
      * Display the specified resource.

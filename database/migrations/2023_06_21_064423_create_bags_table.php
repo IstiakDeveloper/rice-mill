@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('bags', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->constrained()->onDelete('cascade');
-            $table->decimal('bag_amount', 10, 2); // Change the column type to decimal
+            $table->unsignedBigInteger('season_id');
+            $table->decimal('bag_amount', 10, 2);
             $table->string('bag_size');
             $table->float('per_bag_price');
             $table->date('date');
             $table->decimal('total', 10, 2)->default(0.00);
-            $table->timestamps();    
+            $table->timestamps();
+            $table->foreign('season_id')->references('id')->on('seasons');
+            $table->foreignId('customer_id')->constrained()->onDelete('cascade');
         });
     }
 

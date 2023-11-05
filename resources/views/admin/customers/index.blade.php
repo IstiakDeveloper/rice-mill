@@ -6,12 +6,31 @@
         <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
             <div class="flex flex-col sm:flex-row items-center justify-between">
               <h3 class="text-lg leading-6 font-medium text-gray-900">Customers</h3>
-              <div class="flex flex-col sm:flex-row items-center mt-4 sm:mt-0">
-                <p class="text-sm text-gray-500 mr-2 sm:mr-4">Total Amount Due: ৳{{ $totalAmount - $totalPayment }}</p>
-                <p class="text-sm text-gray-500">Total Collection: ৳{{ $totalPayment }}</p>
-              </div>
-              <a href="{{ route('customers.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 sm:mt-0">Add New Customer</a>
+              <form method="GET" action="{{ route('customers.index') }}" class="flex items-center space-x-4">
+                <label for="season" class="text-sm font-medium text-gray-700">Select Season:</label>
+                <select name="season" id="season" class="block w-32 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option value="">All Seasons</option>
+                    @foreach ($seasons as $s)
+                        <option value="{{ $s->name }}" {{ $s->name == $selectedSeason ? 'selected' : '' }}>{{ $s->name }}</option>
+                    @endforeach
+                </select>
+                <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded">Filter</button>
+            </form>
+            <div class="flex flex-col sm:flex-row items-center mt-4 sm:mt-0">
+                <div class="flex flex-col sm:flex-row items-center justify-between">
+                    <p class="text-sm text-gray-500 mr-2 sm:mr-4">
+                        Total Amount Due: ৳{{ $totalAmount - $totalPayment }}
+                    </p>
+                    <p class="text-sm text-gray-500">
+                        Total Collection: ৳{{ $totalPayment }}
+                    </p>
+                </div>
             </div>
+
+
+              <a href="{{ route('customers.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 sm:mt-0">Add New Customer</a>
+
+
           </div>
 
         <div class="px-4 py-5 sm:p-6">
@@ -60,7 +79,6 @@
                     @foreach ($customers as $customer)
                     @php
                         $index = ($customers->currentPage() - 1) * $customers->perPage() + $loop->iteration;
-                        $remainingAmount = $customer->total - $customer->payments()->sum('amount');
                     @endphp
                       <tr>
                         <td class="px-6 py-4 whitespace-no-wrap text-center">
@@ -71,9 +89,9 @@
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap text-center">{{ $customer->area }}</td>
                         <td class="px-6 py-4 whitespace-no-wrap text-center">{{ $customer->phone_number }}</td>
-                        <td class="px-6 py-4 whitespace-no-wrap text-center text-sm leading-5 text-gray-500">৳{{ $remainingAmount }} </td>
-
-
+                        <td class="px-6 py-4 whitespace-no-wrap text-center text-sm leading-5 text-gray-500">
+                            ৳{{ $customer->bags->sum('total') - $customer->payments->sum('amount')  }}
+                        </td>
                         <td class="px-6 py-4 whitespace-no-wrap text-center text-sm leading-5 font-medium">
                           <a href="{{ route('customers.show', $customer->id) }}" class="text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline">Show</a>
                           <a href="{{ route('customers.edit', $customer->id) }}" class="text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline ml-2">Edit</a>
