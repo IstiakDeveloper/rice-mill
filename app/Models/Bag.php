@@ -10,6 +10,7 @@ use App\Models\Customer;
 class Bag extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'customer_id',
         'bag_amount',
@@ -17,6 +18,11 @@ class Bag extends Model
         'per_bag_price',
         'total',
         'date',
+    ];
+
+    public static $rules = [
+        'bag_amount' => 'numeric',
+        // other validation rules for other attributes
     ];
 
     public function customer()

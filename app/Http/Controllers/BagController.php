@@ -35,7 +35,7 @@ class BagController extends Controller
      */
     public function store(Request $request, Customer $customer)
     {
-        $request->validate([
+         $request->validate([
             'bag_amount' => 'required|numeric',
             'bag_size' => 'required|string',
             'per_bag_price' => 'required|numeric',
@@ -72,22 +72,28 @@ class BagController extends Controller
 
     public function pay(Request $request, Customer $customer)
     {
+        $request->validate([
+            'payment_amount' => 'required|numeric|min:0',
+            'payment_date' => 'required|date',
+        ]);
+    
         $paymentAmount = $request->input('payment_amount');
         $paymentDate = $request->input('payment_date');
-
+    
         // Save payment in the database
         $payment = new Payment();
         $payment->customer_id = $customer->id;
         $payment->amount = $paymentAmount;
         $payment->date = $paymentDate;
         $payment->save();
-
-        // Subtract payment amount from customer's total
-        $customer->total -= $paymentAmount;
-        $customer->save();
-
-        return redirect()->back()->with('success', 'Payment made successfully!');
+    
+        // Update customer's total after adding the payment
+        $customer->refresh(); // Refresh the customer model to get the updated total value
+        $remainingAmount = $customer->total - $customer->payments()->sum('amount');
+    
+        return redirect()->route('customers.index')->with('success', 'Payment made successfully!')->with('remainingAmount', $remainingAmount);
     }
+
 
 
 public function pdf(Customer $customer)

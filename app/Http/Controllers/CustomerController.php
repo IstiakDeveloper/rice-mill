@@ -11,13 +11,39 @@ class CustomerController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $customers = Customer::paginate(10); // Assuming you want 10 customers per page
+       $query = Customer::query();
 
+        // Filter by address (area)
+        if ($request->has('area')) {
+            $area = $request->input('area');
+            $query->where('area', 'LIKE', "%$area%");
+        }
+    
+        // Filter by name
+        if ($request->has('name')) {
+            $name = $request->input('name');
+            $query->where('name', 'LIKE', "%$name%");
+        }
+    
+        $customers = $query->paginate(10); // Assuming you want 10 customers per page
+    
         $totalAmount = Customer::sum('total');
         $totalPayment = Payment::sum('amount');
+        
+         $totalPerAmount = 0;
 
+        foreach (Customer::all() as $customer) {
+            $totalPerAmount += $customer->total;
+        }
+
+        $totalPerPayment = 0;
+
+        foreach (Payment::all() as $customer) {
+            $totalPerPayment += $customer->amount;
+        }
+    
         return view('admin.customers.index', compact('customers', 'totalAmount', 'totalPayment'));
     }
 
@@ -37,7 +63,6 @@ class CustomerController extends Controller
         $validatedData = $request->validate([
             'name' => 'required',
             'area' => 'required',
-            'phone_number' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
@@ -77,7 +102,6 @@ class CustomerController extends Controller
         $request->validate([
             'name' => 'required',
             'area' => 'required',
-            'phone_number' => 'required',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Add image validation rules
         ]);
 

@@ -7,7 +7,7 @@
             <div class="flex flex-col sm:flex-row items-center justify-between">
               <h3 class="text-lg leading-6 font-medium text-gray-900">Customers</h3>
               <div class="flex flex-col sm:flex-row items-center mt-4 sm:mt-0">
-                <p class="text-sm text-gray-500 mr-2 sm:mr-4">Total Amount Due: ৳{{ $totalAmount }}</p>
+                <p class="text-sm text-gray-500 mr-2 sm:mr-4">Total Amount Due: ৳{{ $totalAmount - $totalPayment }}</p>
                 <p class="text-sm text-gray-500">Total Collection: ৳{{ $totalPayment }}</p>
               </div>
               <a href="{{ route('customers.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 sm:mt-0">Add New Customer</a>
@@ -18,7 +18,18 @@
             <form method="GET" action="{{ route('customers.index') }}">
                 <div class="flex flex-col md:flex-row md:items-center md:space-x-4">
                     <div class="mb-4 md:mb-0">
-                      <input type="text" class="form-input rounded-md shadow-sm" name="area" placeholder="Filter by Address" value="{{ request('Gram') }}">
+                      <select class="form-select rounded-md shadow-sm" name="area" placeholder="Filter by Address">
+                        <option value="">Select Para</option>
+                        <option value="DorgaPara" {{ request('area') === 'DorgaPara' ? 'selected' : '' }}>DorgaPara</option>
+                        <option value="SorokPara" {{ request('area') === 'SorokPara' ? 'selected' : '' }}>SorokPara</option>
+                        <option value="MadrashaPara" {{ request('area') === 'MadrashaPara' ? 'selected' : '' }}>MadrashaPara</option>
+                        <option value="BombuPara" {{ request('area') === 'BombuPara' ? 'selected' : '' }}>BombuPara</option>
+                        <option value="MondolPara" {{ request('area') === 'MondolPara' ? 'selected' : '' }}>MondolPara</option>
+                        <option value="UttorPara" {{ request('area') === 'UttorPara' ? 'selected' : '' }}>UttorPara</option>
+                        <option value="PukurPara" {{ request('area') === 'PukurPara' ? 'selected' : '' }}>PukurPara</option>
+                        <option value="FaraziPara" {{ request('area') === 'FaraziPara' ? 'selected' : '' }}>FaraziPara</option>
+                        <option value="Nodirkul" {{ request('area') === 'Nodirkul' ? 'selected' : '' }}>Nodirkul</option>
+                    </select>
                     </div>
                     <div class="mb-4 md:mb-0">
                       <input type="text" class="form-input rounded-md shadow-sm" name="name" placeholder="Filter by Name" value="{{ request('name') }}">
@@ -41,20 +52,28 @@
                       <th class="px-6 py-3 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</th>
                       <th class="px-6 py-3 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Gram</th>
                       <th class="px-6 py-3 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Mobile Number</th>
+                      <th class="px-6 py-3 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Due Amount</th>
                       <th class="px-6 py-3 bg-gray-50 text-xs text-center leading-4 font-medium text-gray-500 uppercase tracking-wider">Action</th>
                     </tr>
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200">
                     @foreach ($customers as $customer)
+                    @php
+                        $index = ($customers->currentPage() - 1) * $customers->perPage() + $loop->iteration;
+                        $remainingAmount = $customer->total - $customer->payments()->sum('amount');
+                    @endphp
                       <tr>
                         <td class="px-6 py-4 whitespace-no-wrap text-center">
-                          <div class="text-sm leading-5 font-medium text-gray-900">{{ $loop->iteration }}</div>
+                            <div class="text-sm leading-5 font-medium text-gray-900">{{ $index }}</div>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap text-center">
-                          <div class="text-sm leading-5 font-medium text-gray-900">{{ $customer->name }}</div>
+                          <div class="text-sm leading-5 font-medium text-gray-900"><a href="{{ route('customers.show', $customer->id) }}">{{ $customer->name }}</a></div>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap text-center">{{ $customer->area }}</td>
                         <td class="px-6 py-4 whitespace-no-wrap text-center">{{ $customer->phone_number }}</td>
+                        <td class="px-6 py-4 whitespace-no-wrap text-center text-sm leading-5 text-gray-500">৳{{ $remainingAmount }} </td>
+
+
                         <td class="px-6 py-4 whitespace-no-wrap text-center text-sm leading-5 font-medium">
                           <a href="{{ route('customers.show', $customer->id) }}" class="text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline">Show</a>
                           <a href="{{ route('customers.edit', $customer->id) }}" class="text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline ml-2">Edit</a>

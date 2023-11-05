@@ -1,0 +1,112 @@
+[21-Jun-2023 22:35:21 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Auth\User" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/User.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/User.php on line 11
+[21-Jun-2023 22:35:21 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Auth\User" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/User.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/User.php on line 11
+[21-Jun-2023 22:35:21 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Auth\User" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/User.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/User.php on line 11
+[21-Jun-2023 22:35:21 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Eloquent\Model" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Customer.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Customer.php on line 9
+[21-Jun-2023 22:35:21 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Eloquent\Model" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Customer.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Customer.php on line 9
+[21-Jun-2023 22:35:21 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Eloquent\Model" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Customer.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Customer.php on line 9
+[21-Jun-2023 22:35:21 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Auth\User" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/User.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/User.php on line 11
+[21-Jun-2023 22:35:22 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Eloquent\Model" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Customer.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Customer.php on line 9
+[21-Jun-2023 22:35:23 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Eloquent\Model" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Customer.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Customer.php on line 9
+[21-Jun-2023 22:35:23 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Eloquent\Model" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Customer.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Customer.php on line 9
+[21-Jun-2023 22:35:23 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Eloquent\Model" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Customer.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Customer.php on line 9
+[21-Jun-2023 22:35:32 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Eloquent\Model" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Payment.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Payment.php on line 8
+[21-Jun-2023 22:35:32 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Eloquent\Model" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Payment.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Payment.php on line 8
+[21-Jun-2023 22:35:32 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Eloquent\Model" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Bag.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Bag.php on line 10
+[21-Jun-2023 22:35:32 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Eloquent\Model" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Bag.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Bag.php on line 10
+[21-Jun-2023 22:35:33 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Eloquent\Model" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Bag.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Bag.php on line 10
+[21-Jun-2023 22:35:33 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Eloquent\Model" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Payment.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Payment.php on line 8
+[21-Jun-2023 22:35:33 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Eloquent\Model" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Payment.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Payment.php on line 8
+[21-Jun-2023 22:35:33 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Eloquent\Model" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Bag.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Bag.php on line 10
+[21-Jun-2023 22:35:33 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Eloquent\Model" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Payment.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Payment.php on line 8
+[21-Jun-2023 22:35:34 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Eloquent\Model" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Payment.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Payment.php on line 8
+[21-Jun-2023 22:35:49 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Eloquent\Model" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Payment.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Payment.php on line 8
+[21-Jun-2023 22:36:35 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Auth\User" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/User.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/User.php on line 11
+[21-Jun-2023 22:36:37 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Auth\User" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/User.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/User.php on line 11
+[21-Jun-2023 22:36:43 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Auth\User" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/User.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/User.php on line 11
+[21-Jun-2023 22:37:00 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Eloquent\Model" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Bag.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Bag.php on line 10
+[21-Jun-2023 22:37:02 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Eloquent\Model" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Bag.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Bag.php on line 10
+[21-Jun-2023 22:37:03 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Eloquent\Model" not found in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Bag.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/likzxhhjddf/public_html/mill.istiak.xyz/app/Models/Bag.php on line 10

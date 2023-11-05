@@ -41,6 +41,7 @@
                         <label for="area" class="block text-sm font-medium text-gray-700">Address</label>
 
                         <select name="area" id="area" required class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            <option value="" >Select Para</option>
                             <option value="DorgaPara" {{ old('area') === 'DorgaPara' ? 'selected' : '' }}>DorgaPara</option>
                             <option value="SorokPara" {{ old('area') === 'SorokPara' ? 'selected' : '' }}>SorokPara</option>
                             <option value="MadrashaPara" {{ old('area') === 'MadrashaPara' ? 'selected' : '' }}>MadrashaPara</option>

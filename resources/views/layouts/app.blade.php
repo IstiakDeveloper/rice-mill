@@ -23,9 +23,22 @@
                 });
             }
         </script>
+        <style>
+            input, select{
+                padding: 10px !important;
+                border: 1px solid #999696;
+            }
+        </style>
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            import './bootstrap';
+            import Alpine from 'alpinejs';
+            window.Alpine = Alpine;
+            Alpine.start();
+        </script>
+    
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
