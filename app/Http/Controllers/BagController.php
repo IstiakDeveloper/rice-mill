@@ -167,10 +167,10 @@ public function pdf(Customer $customer)
 
         if ($now->month >= 3 && $now->month <= 8) {
             // March to August is "Aaman" season
-            return "Aman" . $currentYear;
+            return "Eiri" . $currentYear;
         } else {
             // September to February is "Eiri" season
-            return "Eiri" . ($now->month >= 9 ? $currentYear : $currentYear - 1);
+            return "Aman" . ($now->month >= 9 ? $currentYear : $currentYear - 1);
         }
     }
 

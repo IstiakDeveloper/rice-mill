@@ -98,27 +98,11 @@ class CustomerController extends Controller
 
         $customer = Customer::create($validatedData);
 
-        // Create and associate the season
-        $season = Season::firstOrCreate(['name' => $this->getCurrentSeason()]);
-        $customer->season()->associate($season);
         $customer->save();
 
         return redirect()->route('customers.index')->with('success', 'Customer created successfully.');
     }
 
-    private function getCurrentSeason()
-    {
-        $now = Carbon::now();
-        $currentYear = $now->year;
-
-        if ($now->month >= 3 && $now->month <= 8) {
-            // March to August is "Aaman" season
-            return "Aman" . $currentYear;
-        } else {
-            // September to February is "Eiri" season
-            return "Eiri" . ($now->month >= 9 ? $currentYear : $currentYear - 1);
-        }
-    }
 
 
     /**

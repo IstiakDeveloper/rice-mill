@@ -17,8 +17,6 @@ return new class extends Migration
             $table->string('area');
             $table->string('phone_number')->nullable();
             $table->string('image')->nullable();
-            $table->unsignedBigInteger('season_id')->nullable();
-            $table->foreign('season_id')->references('id')->on('seasons');
             $table->timestamps();
         });
     }
