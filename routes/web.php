@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\BagController;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/customers/{customer}/payments', [BagController::class, 'pay'])->name('bags.pay');
     Route::get('/bags/pdf/{customer}', [BagController::class, 'pdf'])->name('bags.pdf');
 
+});
+
+Route::get('/migrate-and-seed', function () {
+    Artisan::call('migrate:seed');
+    return 'Database migrated and seeded.';
 });
 
 
