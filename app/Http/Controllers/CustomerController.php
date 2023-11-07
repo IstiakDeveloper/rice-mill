@@ -62,6 +62,17 @@ class CustomerController extends Controller
         }
 
 
+        // Check if a search query is stored in the session
+        $search = session('search');
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'LIKE', "%$search%")
+                    ->orWhere('phone_number', 'LIKE', "%$search%")
+                    ->orWhere('area', 'LIKE', "%$search%");
+            });
+        }
+
+
         $customers = $customers->paginate(10);
 
         return view('admin.customers.index', compact('customers', 'totalAmount', 'totalPayment', 'seasons', 'selectedSeason'));
@@ -96,11 +107,13 @@ class CustomerController extends Controller
             $validatedData['image'] = asset('storage/' . $imagePath);
         }
 
+
+
         $customer = Customer::create($validatedData);
 
         $customer->save();
 
-        return redirect()->route('customers.index')->with('success', 'Customer created successfully.');
+        return redirect()->route('customers.show', $customer)->with('success', 'Customer created successfully.');
     }
 
 

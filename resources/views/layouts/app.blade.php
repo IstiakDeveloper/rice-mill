@@ -7,21 +7,16 @@
     <link href="https://cdn.tailwindcss.com" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Rice Mill</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='48' height='48' viewBox='0 0 172 172' style=' fill:%2326e07f;'%3E%3Cpath d='M0,172v-172h172v172z' fill='none'/%3E%3Cpath fill='%231fb141' d='M21.5,21.5v129h64.5v-32.25v-64.5v-32.25zM86,53.75c0,17.7805 14.4695,32.25 32.25,32.25c17.7805,0 32.25,-14.4695 32.25,-32.25c0,-17.7805 -14.4695,-32.25 -32.25,-32.25c-17.7805,0 -32.25,14.4695 -32.25,32.25zM118.25,86c-17.7805,0 -32.25,14.4695 -32.25,32.25c0,17.7805 14.4695,32.25 32.25,32.25c17.7805,0 32.25,-14.4695 32.25,-32.25c0,-17.7805 -14.4695,-32.25 -32.25,-32.25z' /%3E%3C/svg%3E" type="image/svg+xml">
 </head>
 <style>
-    input[type=text] {
-    width: 100%;
-    padding: 12px 40px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    outline: none;
-    border: 1px solid rgb(236, 233, 233);
-    }
-    textarea{
-        width: 100%;
+    input, select{
+        border: 1px solid rgb(209, 196, 196);
+        padding: 12px 5px;
         outline: none;
-        border: 1px solid rgb(236, 233, 233);
     }
+
     nav .active-menu {
         color: white !important;
         background-color: rgba(55,65,81,var(--tw-bg-opacity)) !important;
@@ -38,7 +33,7 @@
         <div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-gray-900 lg:translate-x-0 lg:static lg:inset-0">
             <div class="flex items-center justify-center mt-8">
                 <div class="flex items-center">
-                    <span class="mx-2 text-2xl font-semibold text-white">Rice Mill Admin</span>
+                    <a href="{{route('dashboard')}}"><span class="mx-2 text-2xl font-semibold text-white">Rice Mill Admin</span></a>
                 </div>
             </div>
 
@@ -51,7 +46,7 @@
                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z" />
                       </svg>
-                        <span class="mx-3">Dashboard</span>
+                        <span class="mx-3">Home</span>
                     </a>
                 </div>
 
@@ -60,10 +55,46 @@
                        class="flex items-center px-6 py-2 mt-4 group-hover:bg-gray-700 group-hover:bg-opacity-25 group-hover:text-gray-100 cursor-pointer {{ request()->routeIs('customers.*') ? 'active-menu' : '' }}"
                        :class="{ 'text-gray-100 bg-gray-700 bg-opacity-25': isActive('customers.index'), 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100': !isActive('customers.index') }"
                        @click="toggleDropdown('dashboardDropdown')">
-                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                        <path d="M4.5 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM14.25 8.625a3.375 3.375 0 116.75 0 3.375 3.375 0 01-6.75 0zM1.5 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM17.25 19.128l-.001.144a2.25 2.25 0 01-.233.96 10.088 10.088 0 005.06-1.01.75.75 0 00.42-.643 4.875 4.875 0 00-6.957-4.611 8.586 8.586 0 011.71 5.157v.003z" />
+                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
                       </svg>
-                        <span class="mx-3">Customer</span>
+                        <span class="mx-3">Customers</span>
+                    </a>
+                </div>
+
+                <div class="relative group">
+                    <a href="{{route('charges.index')}}"
+                       class="flex items-center px-6 py-2 mt-4 group-hover:bg-gray-700 group-hover:bg-opacity-25 group-hover:text-gray-100 cursor-pointer {{ request()->routeIs('charges.*') ? 'active-menu' : '' }}"
+                       :class="{ 'text-gray-100 bg-gray-700 bg-opacity-25': isActive('charges.index'), 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100': !isActive('charges.index') }"
+                       @click="toggleDropdown('dashboardDropdown')">
+                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
+                      </svg>
+                        <span class="mx-3">Auto Charges</span>
+                    </a>
+                </div>
+
+                <div class="relative group">
+                    <a href="{{route('expenses.index')}}"
+                       class="flex items-center px-6 py-2 mt-4 group-hover:bg-gray-700 group-hover:bg-opacity-25 group-hover:text-gray-100 cursor-pointer {{ request()->routeIs('expenses.*') ? 'active-menu' : '' }}"
+                       :class="{ 'text-gray-100 bg-gray-700 bg-opacity-25': isActive('expenses.index'), 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100': !isActive('expenses.index') }"
+                       @click="toggleDropdown('dashboardDropdown')">
+                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
+                      </svg>
+                        <span class="mx-3">Expenses</span>
+                    </a>
+                </div>
+
+                <div class="relative group">
+                    <a href="{{route('accounts.index')}}"
+                       class="flex items-center px-6 py-2 mt-4 group-hover:bg-gray-700 group-hover:bg-opacity-25 group-hover:text-gray-100 cursor-pointer {{ request()->routeIs('accounts.*') ? 'active-menu' : '' }}"
+                       :class="{ 'text-gray-100 bg-gray-700 bg-opacity-25': isActive('accounts.index'), 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100': !isActive('accounts.index') }"
+                       @click="toggleDropdown('dashboardDropdown')">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3" />
+                      </svg>
+                        <span class="mx-3">Accounts</span>
                     </a>
                 </div>
 {{--
@@ -103,7 +134,7 @@
                         </svg>
                     </button>
 
-                    <div class="relative mx-4 lg:mx-0">
+                    <form action="{{ route('search') }}" method="GET" class="relative mx-4 lg:mx-0">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                             <svg class="w-5 h-5 text-gray-500" viewBox="0 0 24 24" fill="none">
                                 <path
@@ -114,8 +145,8 @@
                         </span>
 
                         <input class="w-full h-full pl-10 pr-4 py-4 rounded-md form-input sm:w-full" type="text"
-                            placeholder="Search">
-                    </div>
+                            placeholder="Search" name="query">
+                    </form>
                 </div>
 
                 <div class="flex items-center">
@@ -204,7 +235,7 @@
                 </div>
             </header>
             <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
-                <div class="container px-6 py-8 mx-auto">
+                <div class="container py-8 mx-auto ">
                     @yield('content')
                 </div>
             </main>

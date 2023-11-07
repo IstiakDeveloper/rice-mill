@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Account;
 use App\Models\Bag;
 use App\Models\Customer;
 use App\Models\Payment;
@@ -96,6 +97,14 @@ class BagController extends Controller
         $payment->date = $paymentDate;
         $payment->season()->associate($season);
         $payment->save();
+
+        //For in accounts save
+        $account = new Account();
+        $account->name = 'Customer'. ' '. $customer->name;;
+        $account->date = $paymentDate;
+        $account->amount = $paymentAmount;
+        $account->save();
+
         $customer->refresh();
         $remainingAmount = $customer->total - $customer->payments()->where('season_id', $season->id)->sum('amount');
 
