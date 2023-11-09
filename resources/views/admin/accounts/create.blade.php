@@ -5,9 +5,17 @@
         <div class="bg-white shadow-md rounded-md p-8 w-full sm:w-96">
             <h2 class="text-2xl font-semibold text-gray-800 mb-4">Add Balance</h2>
 
-            <form action="{{ route('expenses.store') }}" method="POST">
+            <form action="{{ route('accounts.store') }}" method="POST">
                 @csrf
-
+                @if ($errors->any())
+                    <div class="mb-4 p-2 border border-red-400 bg-red-100 text-red-700">
+                        <ul class="list-disc pl-5">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="mb-4">
                     <label for="name" class="block text-gray-600 text-sm font-semibold mb-2">Name</label>
                     <input type="text" name="name" id="name" class="w-full form-input" required>

@@ -55,6 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/search', [SearchController::class, 'index'])->name('search');
 
     Route::resource('charges', ChargeController::class);
+
     Route::resource('expenses', ExpenseController::class);
 
     Route::resource('/accounts', AccountController::class);
