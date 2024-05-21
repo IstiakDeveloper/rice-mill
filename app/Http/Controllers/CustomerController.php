@@ -78,6 +78,42 @@ class CustomerController extends Controller
         return view('admin.customers.index', compact('customers', 'totalAmount', 'totalPayment', 'seasons', 'selectedSeason'));
     }
 
+    public function checkCustomer(Request $request)
+    {
+        $customers = Customer::where('name', 'LIKE', '%' . $request->name . '%')->get();
+        foreach ($customers as $customer) {
+            // Calculate total payment amount for the customer
+            $totalPaymentAmount = $customer->payments()->sum('amount');
+
+            // Subtract total payment amount from the customer's total amount
+            $remainingBalance = $customer->total - $totalPaymentAmount;
+
+            // Add remaining balance to the customer object
+            $customer->remaining_balance = $remainingBalance;
+        }
+
+        return response()->json(['customers' => $customers]);
+    }
+
+    public function getRemainingBalance(Request $request)
+    {
+        // Validate the request
+        $request->validate([
+            'customer_id' => 'required|exists:customers,id',
+        ]);
+
+        // Retrieve the customer by ID
+        $customer = Customer::findOrFail($request->customer_id);
+
+        // Calculate the total amount paid by the customer
+        $totalPaidAmount = Payment::where('customer_id', $customer->id)->sum('amount');
+
+        // Calculate the remaining balance
+        $remainingBalance = $customer->total - $totalPaidAmount;
+
+        // Return the remaining balance as JSON response
+        return response()->json(['remaining_balance' => $remainingBalance]);
+    }
 
 
 
@@ -182,4 +218,5 @@ class CustomerController extends Controller
 
         return redirect()->route('customers.index')->with('success', 'Payment added successfully.');
     }
+
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\BagController;
 use App\Http\Controllers\ChargeController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EntryController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Artisan;
@@ -61,13 +62,29 @@ Route::middleware('auth')->group(function () {
 
     route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+        Route::get('/api/customers', [CustomerController::class, 'checkCustomer']);
+    Route::post('/entries', [EntryController::class, 'store'])->name('entries.store');
+    Route::post('/payments/store', [EntryController::class, 'pay'])->name('payments.store');
+
+
+
 
 
 });
 
+
+//This is for run migration
 Route::get('/migrate-and-seed', function () {
     Artisan::call('migrate:seed');
     return 'Database migrated and seeded.';
+});
+
+//This is for user
+Route::get('/run-seeder', function () {
+    Artisan::call('db:seed', [
+        '--class' => 'UserSeeder'
+    ]);
+    return 'UserSeeder has been run successfully!';
 });
 
 
