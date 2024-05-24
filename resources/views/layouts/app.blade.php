@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <script src="https://cdn.tailwindcss.com"></script>
 
     <title>Rice Mill</title>
@@ -21,12 +23,12 @@
     }
 
 </style>
-<body class="overflow-auto flex items-center justify-center container mx-auto my-20 bg-gray-200">
+<body class="overflow-auto flex items-center justify-center container mx-auto my-0 md:my-20 bg-gray-200">
     <div class="w-full">
         <div x-data="{ sidebarOpen: false }" class="flex">
             <div :class="sidebarOpen ? 'block' : 'hidden'" @click="sidebarOpen = false" class="fixed inset-0 z-20 transition-opacity bg-black opacity-50 lg:hidden"></div>
 
-            <div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed inset-y-0 left-0 z-0 w-64 overflow-y-auto transition duration-300 transform bg-white lg:translate-x-0 lg:static lg:inset-0 rounded-lg shadow-lg mr-4">
+            <div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed inset-y-0 left-0 z-20 md:z-0 w-64 overflow-y-auto transition duration-300 transform bg-white lg:translate-x-0 lg:static lg:inset-0 rounded-lg shadow-lg mr-4">
                 <div class="flex items-center justify-center mt-8">
                     <div class="flex items-center">
                         <a href="{{route('dashboard')}}"><span class="mx-2 text-2xl font-semibold text-white">Rice Mill Admin</span></a>
@@ -181,7 +183,7 @@
                     </div>
                 </header>
                 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
-                    <div class="container py-8 mx-auto ">
+                    <div class="container mx-auto ">
                         @yield('content')
                     </div>
                 </main>

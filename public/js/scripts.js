@@ -109,11 +109,13 @@ function openPaymentModal() {
     });
 }
 
-function closePaymentModal() {
-    $('#paymentModal').addClass('hidden');
-}
 
 function populateCustomersDropdown(customers) {
+    // Sort customers alphabetically by name
+    customers.sort(function(a, b) {
+        return a.name.localeCompare(b.name);
+    });
+
     var customerDropdown = document.getElementById('customer_id2');
     customerDropdown.innerHTML = '<option value="">Select Customer</option>'; // Clear existing options
     customers.forEach(function(customer) {
@@ -137,5 +139,57 @@ function updateRemainingBalance(customerId) {
     }
 }
 
+function closePaymentModal() {
+    $('#paymentModal').addClass('hidden');
+}
+
 
 //Payment Entry End
+
+
+function searchCustomers(query) {
+    // Check if the query is empty
+    if (!query.trim()) {
+        // Clear search results if the query is empty
+        $('#search_results').empty();
+        return;
+    }
+
+    // Send AJAX request to search for customers
+    $.ajax({
+        url: '/api/customers/search',
+        method: 'GET',
+        data: { query: query },
+        success: function(response) {
+            if (response.customers.length > 0) {
+                displaySearchResults(response.customers);
+            } else {
+                // Clear search results if no matching customers found
+                $('#search_results').empty();
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Failed to search customers: ', error);
+        }
+    });
+}
+
+function displaySearchResults(customers) {
+    var searchResultsDiv = $('#search_results');
+    searchResultsDiv.empty(); // Clear previous search results
+
+    if (customers.length > 0) {
+        customers.forEach(function(customer) {
+            var customerDiv = $('<div>').text(customer.name);
+            customerDiv.addClass('bg-gray-100 p-2.5 rounded-lg mb-2');
+            searchResultsDiv.append(customerDiv);
+        });
+        searchResultsDiv.show(); // Show the search results div
+    } else {
+        searchResultsDiv.hide(); // Hide the search results div when no results
+    }
+}
+
+
+
+

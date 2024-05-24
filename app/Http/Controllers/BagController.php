@@ -108,7 +108,7 @@ class BagController extends Controller
         $customer->refresh();
         $remainingAmount = $customer->total - $customer->payments()->where('season_id', $season->id)->sum('amount');
 
-        return redirect()->route('customers.index')->with('success', 'Payment made successfully!')->with('remainingAmount', $remainingAmount);
+        return redirect()->back()->with('success', 'Payment made successfully!')->with('remainingAmount', $remainingAmount);
     }
 
 

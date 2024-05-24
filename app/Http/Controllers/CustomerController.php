@@ -95,6 +95,16 @@ class CustomerController extends Controller
         return response()->json(['customers' => $customers]);
     }
 
+        public function searchPayment(Request $request)
+        {
+            $query = $request->input('query');
+
+            // Perform the search query to find customers
+            $customers = Customer::where('name', 'like', '%' . $query . '%')->get();
+
+            return response()->json(['customers' => $customers]);
+        }
+
     public function getRemainingBalance(Request $request)
     {
         // Validate the request
@@ -192,7 +202,7 @@ class CustomerController extends Controller
 
         $customer->update($validatedData);
 
-        return redirect()->route('customers.index')->with('success', 'Customer updated successfully.');
+        return redirect()->back()->with('success', 'Customer updated successfully.');
     }
 
     /**
@@ -201,7 +211,7 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         $customer->delete();
-        return redirect()->route('customers.index')->with('success', 'Customer deleted successfully.');
+        return redirect()->back()->with('success', 'Customer deleted successfully.');
     }
 
 
@@ -216,7 +226,7 @@ class CustomerController extends Controller
         $customer->total -= $paymentAmount;
         $customer->save();
 
-        return redirect()->route('customers.index')->with('success', 'Payment added successfully.');
+        return redirect()->back()->with('success', 'Payment added successfully.');
     }
 
 }

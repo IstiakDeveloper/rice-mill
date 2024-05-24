@@ -62,13 +62,10 @@ Route::middleware('auth')->group(function () {
 
     route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-        Route::get('/api/customers', [CustomerController::class, 'checkCustomer']);
+    Route::get('/api/customers', [CustomerController::class, 'checkCustomer']);
     Route::post('/entries', [EntryController::class, 'store'])->name('entries.store');
+    Route::get('/api/customers/search', [CustomerController::class, 'searchPayment']);
     Route::post('/payments/store', [EntryController::class, 'pay'])->name('payments.store');
-
-
-
-
 
 });
 
@@ -84,7 +81,7 @@ Route::get('/run-seeder', function () {
     Artisan::call('db:seed', [
         '--class' => 'UserSeeder'
     ]);
-    return 'UserSeeder has been run successfully!';
+    return 'UserSeeder has been run successfully! Your email admin@mail.com and password is: superpass0$';
 });
 
 

@@ -25,22 +25,22 @@
 
                 <div class="mt-4">
                     <label for="image" class="block font-medium text-gray-700">Image</label>
-                    <input type="file" name="image" id="image" class="form-input mt-1 block w-full">
+                    <input type="file" name="image" id="image" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 </div>
 
                 <div>
                     <label for="name" class="block font-medium text-gray-700">Name</label>
-                    <input type="text" name="name" id="name" value="{{ $customer->name }}" class="form-input mt-1 block w-full">
+                    <input type="text" name="name" id="name" value="{{ $customer->name }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                   </div>
 
                   <div class="mt-4">
                     <label for="area" class="block font-medium text-gray-700">Area</label>
-                    <input type="text" name="area" id="area" value="{{ $customer->area }}" class="form-input mt-1 block w-full">
+                    <input type="text" name="area" id="area" value="{{ $customer->area }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                   </div>
 
                   <div class="mt-4">
                     <label for="phone_number" class="block font-medium text-gray-700">Phone Number</label>
-                    <input type="text" name="phone_number" id="phone_number" value="{{ $customer->phone_number }}" class="form-input mt-1 block w-full">
+                    <input type="text" name="phone_number" id="phone_number" value="{{ $customer->phone_number }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                   </div>
                 <div class="mt-4">
                     <button type="submit"

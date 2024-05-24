@@ -24,7 +24,7 @@
                     <div class="col-span-6 sm:col-span-4">
                         <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
                         <input type="file" name="image" id="image"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         @error('image')
                             <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
                         @enderror
@@ -32,7 +32,7 @@
                     <div class="col-span-6 sm:col-span-4">
                         <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
                         <input type="text" name="name" id="name" autocomplete="name" required
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         @error('name')
                             <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
                         @enderror
@@ -40,7 +40,7 @@
                     <div class="col-span-6 sm:col-span-4">
                         <label for="area" class="block text-sm font-medium text-gray-700">Address</label>
 
-                        <select name="area" id="area" required class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        <select name="area" id="area" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                             <option value="" >Select Para</option>
                             <option value="DorgaPara" {{ old('area') === 'DorgaPara' ? 'selected' : '' }}>DorgaPara</option>
                             <option value="SorokPara" {{ old('area') === 'SorokPara' ? 'selected' : '' }}>SorokPara</option>
@@ -59,7 +59,7 @@
                     <div class="col-span-6 sm:col-span-4">
                         <label for="phone_number" class="block text-sm font-medium text-gray-700">Mobile Number</label>
                         <input type="text" name="phone_number" id="phone_number" pattern="[0-9]*"
-                          class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         @error('phone_number')
                             <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
                         @enderror

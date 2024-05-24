@@ -8,7 +8,7 @@
               <h3 class="text-lg leading-6 font-medium text-gray-900">Customers</h3>
               <form method="GET" action="{{ route('customers.index') }}" class="flex items-center space-x-4">
                 <label for="season" class="text-sm font-medium text-gray-700">Select Season:</label>
-                <select name="season" id="season" class="block w-32 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <select name="season" id="season" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option value="">All Seasons</option>
                     @foreach ($seasons as $s)
                         <option value="{{ $s->name }}" {{ $s->name == $selectedSeason ? 'selected' : '' }}>{{ $s->name }}</option>
@@ -37,7 +37,7 @@
             <form method="GET" action="{{ route('customers.index') }}">
                 <div class="flex flex-col md:flex-row md:items-center md:space-x-4">
                     <div class="mb-4 md:mb-0">
-                      <select class="form-select rounded-md shadow-sm" name="area" placeholder="Filter by Address">
+                      <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" name="area" placeholder="Filter by Address">
                         <option value="">Select Para</option>
                         <option value="DorgaPara" {{ request('area') === 'DorgaPara' ? 'selected' : '' }}>DorgaPara</option>
                         <option value="SorokPara" {{ request('area') === 'SorokPara' ? 'selected' : '' }}>SorokPara</option>
@@ -51,7 +51,7 @@
                     </select>
                     </div>
                     <div class="mb-4 md:mb-0">
-                      <input type="text" class="form-input rounded-md shadow-sm" name="name" placeholder="Filter by Name" value="{{ request('name') }}">
+                      <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" name="name" placeholder="Filter by Name" value="{{ request('name') }}">
                     </div>
                     <div>
                       <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition duration-150 ease-in-out">
