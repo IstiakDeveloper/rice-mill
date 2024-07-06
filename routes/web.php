@@ -67,6 +67,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/api/customers/search', [CustomerController::class, 'searchPayment']);
     Route::post('/payments/store', [EntryController::class, 'pay'])->name('payments.store');
 
+
+    Route::get('/dashboard/generate-report', [DashboardController::class, 'generateReport'])->name('dashboard.generateReport');
+
+
 });
 
 

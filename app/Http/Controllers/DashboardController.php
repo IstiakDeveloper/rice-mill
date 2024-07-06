@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Account;
 use App\Models\Bag;
+use App\Models\Customer;
 use App\Models\Expense;
 use App\Models\Payment;
 use App\Models\Season;
 use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -93,6 +95,10 @@ class DashboardController extends Controller
             $totalDue = $bags->sum('total') - $totalPayments;
         }
 
+        if ($request->has('generate_report')) {
+            return $this->generateReport();
+        }
+
 
         return view("dashboard", compact(
             'accountTotal',
@@ -111,5 +117,17 @@ class DashboardController extends Controller
             'totalPayments',
             'totalDue'
         ));
+    }
+
+    public function generateReport()
+    {
+        $customers = Customer::with(['bags', 'payments'])
+        ->whereNotIn('name', ['Unknown', 'Aaaaaaaa'])
+        ->get();
+
+        $pdf = PDF::loadView('reports.customers', compact('customers'));
+
+        // Return the PDF inline in the browser
+        return $pdf->stream('customer_report.pdf');
     }
 }

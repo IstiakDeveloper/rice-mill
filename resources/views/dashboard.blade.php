@@ -4,6 +4,14 @@
     <div class="p-6">
         <h2 class="text-2xl font-semibold text-gray-800">Dashboard</h2>
     </div>
+
+    <form action="{{ route('dashboard') }}" method="GET" class="mb-4">
+        <input type="hidden" name="generate_report" value="1">
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700">
+            Generate PDF Report
+        </button>
+    </form>
+
     <div class=" flex mb-8 bg-white shadow overflow-hidden sm:rounded-lg p-6 justify-between items-center">
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg" onclick="openModal()">Add Entry</button>
         <button onclick="openPaymentModal()" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg">Add Payment</button>
@@ -28,6 +36,7 @@
             <i class="fas fa-plus"></i> Add Balance
         </a>
     </div>
+
 
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 my-4">
